@@ -1,0 +1,154 @@
+#include <vector>
+
+
+class Node {
+ 
+public: 
+    int val; 
+
+    Node* next; 
+    Node(int val){
+
+        this->val = val; 
+        this->next = nullptr; 
+
+    }
+    Node(){}
+};
+class MyLinkedList {
+
+private: 
+
+    Node* head; 
+    int length; 
+
+    
+
+public:
+
+   
+    MyLinkedList() {
+
+        this->head = nullptr; 
+        this->length = 0; 
+
+        
+
+         
+    }
+    
+    int get(int index) {
+
+        if(index < 0 || index >= this->length){
+            return -1; 
+        }
+        Node* dummy = head; 
+        for(int i = 0; i < index; i++){
+            dummy = dummy -> next; 
+        }
+
+        return dummy -> val; 
+        
+    }
+    
+    void addAtHead(int val) {
+
+        //add at head 
+        Node* dummy = new Node(); 
+        dummy-> next = head; 
+        dummy -> val = val; 
+        head = dummy; 
+
+        length++; 
+        
+    }
+    
+    void addAtTail(int val) {
+
+        Node* newNode = new Node(val); 
+
+        if(!head){
+            head = newNode; 
+        } else{
+
+            Node* dummy = head; 
+
+            while(dummy -> next){
+                dummy = dummy -> next; 
+            }
+            // Node* newNode = new Node(); 
+            //newNode->val = val; 
+            dummy -> next = newNode; 
+            
+        }
+
+        length++; 
+    }
+    
+    void addAtIndex(int index, int val) {
+        if(index < 0 || index > length){
+            return; 
+        }
+        if (index == 0){
+            addAtHead(val); 
+        } else if (index == this->length){
+            addAtTail(val); 
+        } else{
+
+            Node* dummy = head; 
+
+            for(int i = 0 ; i < index-1; i++){
+
+                dummy = dummy -> next; 
+                
+            }
+
+
+            Node* newNode = new Node(val); 
+            newNode -> next = dummy->next; 
+            dummy->next = newNode;
+            length++; 
+
+        }
+
+        
+        
+    
+        
+    }
+    
+    void deleteAtIndex(int index) {
+
+
+        if(index < 0 || index >= length){ //dont forget to include because in this case you are trying to find an EXISTING index to delete
+            return; 
+        }
+
+        if(index == 0){
+
+            Node* deleteNode = head; 
+            head = head -> next; 
+            delete deleteNode; 
+            length--; 
+        } else{
+            Node* dummy = head; 
+            for(int i = 0; i < index-1; i++){
+                dummy = dummy -> next;
+            }
+            Node* deleteNode = dummy-> next;
+            dummy -> next = dummy -> next -> next; 
+            delete deleteNode; 
+            length--;
+        } 
+    }
+};
+
+
+ //* Your MyLinkedList object will be instantiated and called as such:
+// MyLinkedList* obj = new MyLinkedList();
+// int param_1 = obj->get(index);
+// obj->addAtHead(val);
+// obj->addAtTail(val);
+// obj->addAtIndex(index,val);
+// obj->deleteAtIndex(index);
+ 
