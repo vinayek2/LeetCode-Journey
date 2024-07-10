@@ -1,0 +1,48 @@
+#include <string>
+
+class Solution {
+public:
+
+
+    
+    string gcdOfStrings(string str1, string str2) {
+
+       
+       if(str1 + str2 != str2 + str1){
+
+
+           return ""; 
+
+       }
+
+       int lenGCD = retrieveGCD(str1.size(), str2.size()); 
+
+
+
+       std::string gcd = str1.substr(0, lenGCD);
+
+    
+
+      return gcd; 
+
+     
+        
+    }
+
+    int retrieveGCD(int size1, int size2){
+        if(size2 == 0){
+            return size1; 
+        }
+        return retrieveGCD(size2, size1 % size2); 
+        // if(size1 == size2){
+        //     return size1; 
+        // } else if(size1 > size2){
+        //     return retrieveGCD(size1-size2, size2); 
+        // } else{
+        //     return retrieveGCD(size1, size2-size1); 
+
+        // }
+
+        
+    }
+};
