@@ -1,0 +1,74 @@
+#include <stack>
+#include <string>
+class Solution {
+public:
+    string removeStars(string s) {
+
+        //search for star
+
+        //check the left value
+        //remove that character left value and * itself
+
+
+        //search for the next star
+
+
+        //make a stack
+        /*
+
+
+        leet**cod*e
+        *
+        t
+        e
+        e
+        l
+
+
+        delete * and then delete prev value 
+        so track the previous which will be t
+        
+
+        then keep pushing 
+
+
+    */
+
+
+    stack<char> stack_char; 
+
+
+    for(int i = 0; i < s.length(); i++){
+        stack_char.push(s.at(i));
+        if(stack_char.top() == '*' && i == 0){
+            stack_char.pop();
+        } else if(stack_char.top() == '*'){
+            stack_char.pop(); 
+            stack_char.pop();
+        }
+
+        
+
+    }
+
+
+    string nw_string = ""; 
+    // for(char sstr : stack_char){
+    //     nw_string += sstr; 
+    // }
+
+
+    while(!stack_char.empty()){
+
+        nw_string += stack_char.top(); 
+
+        stack_char.pop();
+    }
+
+
+    reverse(nw_string.begin(), nw_string.end());
+
+    return nw_string;
+        
+    }
+};
