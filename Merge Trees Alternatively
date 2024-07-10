@@ -1,0 +1,61 @@
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+        string str; 
+
+        if(word1.length() == word2.length()){//edge case 1 
+            for(int i = 0; i < word1.length(); i++){
+                str += word1[i]; 
+
+                str += word2[i]; 
+            }
+            return str; 
+        }
+
+        if(word1.length() > word2.length()){//edge case 2
+            for(int i = 0; i < word1.length(); i++){
+                str += word1[i]; 
+
+                str += word2[i]; 
+
+
+
+                if(i + 1 == word2.size()){
+                    str += word1.substr( i + 1, word1.length()-1); 
+                    break; 
+                }
+            }
+            return str; 
+        }
+        if(word1.length() < word2.length()){//edge case 3
+            for(int i = 0; i < word1.length(); i++){
+                str += word1[i]; 
+
+                str += word2[i]; 
+
+
+
+                if(i + 1 == word1.size()){
+                    str += word2.substr( i + 1, word2.length()-1); 
+                    break; 
+                }
+            }
+            return str; 
+        }
+
+
+        
+
+
+
+
+        return "";
+
+
+        
+
+
+
+        
+    }
+};
