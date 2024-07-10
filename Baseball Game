@@ -1,0 +1,57 @@
+#include <string>
+#include <iostream> 
+class Solution {
+public:
+    int calPoints(vector<string>& operations) {
+
+        //operations is a string vector
+
+        int score = 0; //GOING TO USE THIS FOR SMTHIN IDK YET 
+
+        std::stack<string> track_scores; //need a stack
+
+        for(int i = 0; i < operations.size(); i++){
+
+            if(operations[i] != "D" && operations[i] != "C" && operations[i] != "+"){//you need to put an && symbol when doing this function t
+                
+                track_scores.push(operations[i]); 
+            }
+
+            if(operations[i] == "D"){
+
+                score = std::stoi(track_scores.top()) * 2; 
+                track_scores.push(std::to_string(score)); 
+
+            } else if(operations[i] == "C"){
+
+                track_scores.pop(); 
+
+            } else if(operations[i] == "+"){
+//how to retrieve the previous element in a stack 
+                string top_stack = track_scores.top() ; 
+
+                track_scores.pop(); 
+            
+                score = stoi(top_stack) + stoi(track_scores.top()); 
+                track_scores.push(top_stack); 
+                track_scores.push(std::to_string(score)); 
+
+
+              } 
+
+              
+      
+        }
+
+        int sum = 0; 
+
+        while(!track_scores.empty()){
+            sum += stoi(track_scores.top()); 
+            track_scores.pop(); 
+        }
+
+        return sum; 
+        
+        
+    }
+};
