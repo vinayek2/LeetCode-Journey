@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int countStudents(vector<int>& students, vector<int>& sandwiches) {
+
+        std::queue<int> studentQueue; 
+        
+        for(int i : students){
+            studentQueue.push(i);
+        }
+
+        //now students are in a queue which is FIFO
+        int numSize = students.size(); 
+        int move = 0; 
+        int track_index = 0; 
+        while(!studentQueue.empty() && move < numSize ){
+            if (studentQueue.front() != sandwiches[track_index]){
+                studentQueue.push(studentQueue.front()); 
+                studentQueue.pop();
+                move++; 
+            } else{
+
+                studentQueue.pop(); 
+                move = 0;
+                track_index++; 
+                
+            }
+        }
+
+        return studentQueue.size(); 
+        
+    }
+};
