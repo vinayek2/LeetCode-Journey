@@ -1,0 +1,34 @@
+Notes on a Problem: 
+
+- Given an integer array `nums` of length `n`, you want to create an array `ans` of length `2n` where `ans[i] == nums[i]` and `ans[i + n] == nums[i]` for `0 <= i < n` (**0-indexed**). Specifically, `ans` is the **concatenation** of two `nums` arrays. Return *the array* `ans`.
+- We need to take an array and concatenate it with itself essentially. So that, [1,2,3]→[1,2,3,1,2,3]. We are going to need to set the size of our new array to be twice the size of the old one.
+1. We need to create the new array and set the new size of our to be twice that of `nums` which is passed in.  
+
+```cpp
+int capacity = 2 * nums.size();
+
+std::vector<int> newarr(capacity);
+```
+
+1. Now we need to assign each element of the old array into its old index values
+
+```cpp
+for(int i = 0; i < capacity; i++){
+
+		newarr[i] = nums[i];
+
+}
+```
+
+1. We will run into error with the code above because we have to account for the other half of our new list. Therefore, we use % or remainder to specify that if we exceed the nums size then we can reset it back to zero by making nums.size() serve as a boundary for the list.  
+
+```cpp
+int n = nums.size(); 
+for(int i = 0; i < capacity; i++){
+
+		newarr[i] = nums[i % n];
+
+}
+```
+
+4) Then return the new array.
