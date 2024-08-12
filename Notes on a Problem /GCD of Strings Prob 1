@@ -1,0 +1,34 @@
+
+https://www.notion.so/Greatest-Common-Divisor-of-Strings-eb34ee48dbea490796b05948aec5914d
+
+Notes on Problem:
+
+- Given:
+    - For two strings `s` and `t`, we say "`t` divides `s`" if and only if `s = t + t + t + ... + t + t` (i.e., `t` is concatenated with itself one or more times).
+    - Given two strings `str1` and `str2`, return *the largest string* `x` *such that* `x` *divides both* `str1` *and* `str2`.
+- Recall that the greatest common divisor is the highest number that can be divided into two numbers. So the number will be smaller than the two numbers divided into to get zero.
+- We need to take the length of strings rather than their values as strings to find the length of x representing the GCD of str1 and str2. (Notice the problem expects you to know what GCD is).
+
+---
+
+1. We check to see if the sum of str1 and str2 are equal to str2 and str1 so that there is a common divisor in the first place
+2. We can find the GCD length of the two strings but a function call. 
+3. In the retrieveGCD function, we use the common **Euclidean algorithm** to retrieve GCD. You can memorize this but its best to understand the logic. 
+    
+    ```jsx
+    
+    if(b == 0){
+    	return a;  //base case and check if b is zero because b is acting as the remainder 
+    }
+    return gcd(b, a % b); //so the value of b represents the new a and the value of the remainder a / b represents b now
+    
+    //b will take the place of remainder problem that should reach zero and a is the value you trying to actually find which is going to be divided continuously until b validates to zero
+     
+    ```
+    
+1. Then you can call the **`substr`** function to grab the substring of either str1 or str2 and then you can return gcd string as a result. 
+
+```jsx
+std::string str;
+str.substr(0, index);
+```
